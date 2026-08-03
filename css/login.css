@@ -1,0 +1,26 @@
+
+h1{
+    color:blueviolet;
+    text-align: center;
+}
+
+.login-form{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    margin-top:80px;
+    gap:30px;
+
+}
+.login-form label{
+    display:block;
+    font-size: 20px;
+}
+
+.login-form input{
+    display:block
+}
+
+#forget-pass{
+    margin-left:60px
+}
