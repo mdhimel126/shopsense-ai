@@ -87,6 +87,7 @@
     <a href="../auth/logout.php">logout</a>
 
      <div  class="main">
+
         <div class="left card">
             <div>
                 <h2>Sequaia Inspiring <br> Musico</h2>
@@ -122,6 +123,7 @@
 
 
 
+
      <div class="main2">
          <?php  while($product= mysqli_fetch_assoc($data)):  ?>
 
@@ -133,7 +135,7 @@
                <p>Price :<?php echo $product['price'] ?> </p>
 
                <?php if(isset($_SESSION['user_id'])): ?>
-                  <form action="buy.php">
+                  <form action="buy.php" method="POST">
                     <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                     <label for="">Quantity</label>
                     <input type="number" name="quantity" value="1" min="1">
