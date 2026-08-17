@@ -1,3 +1,4 @@
+<?php  session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +13,7 @@
                 min-height:100vh;
                 display:flex;
                 flex-direction:column;
+                background-color:#d1d9d9;
                 gap:30px;
             }
 
@@ -24,7 +26,9 @@
                 width:25%;
                 margin:auto;
                 flex:1;
-                /* background-color:gray; */
+                background-color:#e5ebea;
+                padding:15px;
+                border-radius:15px;
                 
             }
             .contact-form div{

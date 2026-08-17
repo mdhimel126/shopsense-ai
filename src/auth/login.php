@@ -1,3 +1,5 @@
+<?php  session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,6 +46,9 @@
             $total=mysqli_num_rows($data);
 
             if($total==1){
+
+                $user=mysqli_fetch_assoc($data);
+                $_SESSION['user_id']=$user['id'];
                 header("Location:../user/home.php");
                 exit();
             }else{

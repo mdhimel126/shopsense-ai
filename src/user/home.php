@@ -1,3 +1,10 @@
+<?php session_start();
+   include("../../config/db.php");
+   $query="select * from products";
+   $data=mysqli_query($conn,$query);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,11 +66,25 @@
         border-radius:5px;
         color:white;
     }
+    .card-image{
+        height:100px;
+        width:120px;
+
+    }
+    .card-button{
+        padding:5px;
+        background-color:blue;
+        border-radius:5px;
+        color:white;
+        margin-top:10px;
+    }
     </style>
 </head>
 <body>
 
     <?php include('../../includes/navbar.php') ?>
+
+    <a href="../auth/logout.php">logout</a>
 
      <div  class="main">
         <div class="left card">
@@ -102,47 +123,40 @@
 
 
      <div class="main2">
+         <?php  while($product= mysqli_fetch_assoc($data)):  ?>
 
          <div class="left card">
             <div class="div-image">
-                <img src="../../images/powerbank.png" alt="" class="airburds-image">
+
+              <img src="../../images/<?php echo $product['image'];  ?> " alt="<?php  echo $product['name']  ?>" class="card-image">
+               <h3>Product Name :<?php echo $product['name'] ?>  </h3>
+               <p>Price :<?php echo $product['price'] ?> </p>
+
+               <?php if(isset($_SESSION['user_id'])): ?>
+                  <form action="buy.php">
+                    <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                    <label for="">Quantity</label>
+                    <input type="number" name="quantity" value="1" min="1">
+                    <br>
+                    <button class="card-button">Buy Product</button>
+                  </form>
+               <?php else: ?>
+                  <a href="../auth/login.php"><button >Buy Product</button> </a>
+                  <?php endif; ?>
+
+               
+
             </div>
          </div>
 
-         <div class="left card">
-            <div class="div-image">
-                <img src="../../images/mouse.webp" alt="" class="airburds-image">
-            </div>
-         </div>
-
-         <div class="left card">
-            <div class="div-image">
-                <img src="../../images/keyboard.webp" alt="" class="airburds-image">
-            </div>
-         </div>
-
-
-
-          <div class="left card">
-            <div class="div-image">
-                <img src="../../images/wireless_charger.webp" alt="" class="airburds-image">
-            </div>
-         </div>
-
-         <div class="left card">
-            <div class="div-image">
-                <img src="../../images/grip_holder.webp" alt="" class="airburds-image">
-            </div>
-         </div>
-
-         <div class="left card">
-            <div class="div-image">
-                <img src="../../images/gaming_controler.webp" alt="" class="airburds-image">
-            </div>
-         </div>
+               <?php endwhile; ?>
 
 
       </div>
+
+
+
+    </div>  
    
 
      <?php  include("../../includes/footer.php") ?>
