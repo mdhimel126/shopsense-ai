@@ -1,0 +1,24 @@
+
+        *{
+            margin:0;
+            padding:0;
+        }
+        .footer{
+            background-color:#e5ebea;
+            color:black;
+            display:flex;
+            justify-content:space-around;
+            align-items:center;
+            padding:15px;
+            font-size:20px;
+        }
+        .footer ul{
+            display:flex;
+            list-style:none;
+            gap:30px;
+        }
+        .footer a{
+             text-decoration: none;
+             color:white;
+        }
+        

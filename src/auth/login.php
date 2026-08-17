@@ -44,7 +44,8 @@
             $total=mysqli_num_rows($data);
 
             if($total==1){
-                echo "Congratualtion your login process is start";
+                header("Location:../user/home.php");
+                exit();
             }else{
                 echo "Invalid password given";
             }
