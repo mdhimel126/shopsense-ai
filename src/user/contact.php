@@ -47,9 +47,11 @@
     <title>Document</title>
 </head>
 <body>
-    <?php  include("../../includes/navbar.php")  ?>
+    <?php  include("../../includes/navbar.php");
+           include("../../config/db.php");
+    ?>
 
-    <form action="" method="" class="contact-form">
+    <form action="" method="POST" class="contact-form">
 
       
         <div>
@@ -61,15 +63,40 @@
         <div>
             <label for="">Message Box</label>
             <br>
-           <textarea name="" id="" rows="4"></textarea>
+           <textarea name="message" id="" rows="4"></textarea>
         </div>
 
         <div>
-            <button type="submit" name="contact">Login</button>
+            <button type="submit" name="submit">Submit</button>
         </div>
      
     </form>
 
-    <?php include("../../includes/footer.php") ?>
+    <?php 
+
+         if(isset($_POST['submit'])){
+         if(isset($_SESSION['user_id'])){
+            $user_id=$_SESSION['user_id'];
+            echo $user_id;
+            $email=$_POST['email'];
+            echo $email;
+            $message=$_POST['message'];
+            echo $message;
+
+            $query="insert into contact (user_email,message) values ('$email','$message')";
+
+            $data=mysqli_query($conn,$query);
+
+            if($data){
+                echo "successfull";
+            }else{
+                echo "sorry";
+            }
+         }
+        }    
+     ?>
+     
+
+
 </body>
 </html>
